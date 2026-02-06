@@ -2,16 +2,9 @@ const express = require("express");
 
 const app = express();
 
-app.use("/test", (req, res) => {
-  res.send("Hello from server");
-});
-
-app.use("/", (req, res) => {
-  res.send("Hello from Home page");
-});
-
-app.use("/hello", (req, res) => {
-  res.send("Hello hello Sudharshan");
+app.get("/abc/:userid", (req, res) => {
+  console.log(req.params);
+  res.send({ firstName: "Sudharshan", secondName: "Reddy" });
 });
 
 app.listen(3000, () => {
