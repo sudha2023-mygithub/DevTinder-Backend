@@ -56,11 +56,11 @@ app.patch("/user/:userId", async (req, res) => {
     if (!isUpdateAllowed) {
       throw new Error("Update not allowed");
     }
-    if (data?.skills.length < 10) {
-      throw new Error("skills should be less than 10");
+    if (data?.skills && data.skills.length > 10) {
+      throw new Error("skills should not be more than 10");
     }
 
-    await User.findByIdAndUpdate({ _id: userId }, data, {
+    await User.findByIdAndUpdate(userId, data, {
       returnDocument: "after",
       runValidators: true,
     });
